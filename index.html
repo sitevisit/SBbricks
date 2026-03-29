@@ -110,19 +110,22 @@
     <h2>Place Your Order</h2>
 
     <label for="name">Full Name:</label>
-    <input type="text" id="name" required>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Enter Email:</label>
+    <input type="email" id="email" name="email" placeholder="optional">
 
     <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" required>
+    <input type="tel" id="phone" name="phone" required>
 
     <label for="area">Delivery Area:</label>
-    <input type="text" id="area" required>
+    <textarea id="area" rows="3" name="address" required></textarea>
 
     <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" required>
+    <input type="number" id="quantity" name="quantity" required>
 
     <label for="message">Additional Message:</label>
-    <textarea id="message" rows="3"></textarea>
+    <textarea id="message" name="message" rows="3" placeholder="optional"></textarea>
 
     <button type="submit">Send Order on WhatsApp</button>
   </form>
@@ -133,30 +136,53 @@
   <footer>
     <p>&copy; 2025 SB Bricks Manufacturers +916363788297,8310812864| All Rights Reserved</p>
   </footer>
+<script>
+  const form = document.getElementById("orderForm");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzOlQLgGQ0NxeR_khEG5_hhkyGCQJ-d6Kf274SDhlN__DPqF-X8MyESgrnSn2wvupJC6g/exec"; // Replace with your Apps Script URL
 
-  <script>
-    document.getElementById("orderForm").addEventListener("submit", function(e){
-      e.preventDefault();
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const area = document.getElementById("area").value;
-      const quantity = document.getElementById("quantity").value;
-      const message = document.getElementById("message").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const area = document.getElementById("area").value;
+    const quantity = document.getElementById("quantity").value;
+    const message = document.getElementById("message").value;
 
-      const whatsappNumber = "916363788297"; // 🔁 replace with your WhatsApp number (with country code, no +)
-      
-      const whatsappMsg = `🧱 *New Brick Order* 🧱
+    const whatsappNumber = "916363788297"; // Your WhatsApp number
+
+    const whatsappMsg = `🧱 *New Brick Order* 🧱
 Name: ${name}
+Email:${email}
 Phone: ${phone}
 Area: ${area}
 Quantity: ${quantity}
 Message: ${message}`;
 
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
-      window.open(whatsappURL, "_blank");
-    });
-  </script>
+    // Save to Google Sheet in background
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.text();
+      console.log("Google Sheet:", result);
+
+    } catch (error) {
+      console.error("Google Sheet save failed:", error);
+    }
+
+    // Open WhatsApp after saving attempt
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
+    window.open(whatsappURL, "_blank");
+
+    form.reset();
+  });
+</script>
 
 </body>
 </html>
