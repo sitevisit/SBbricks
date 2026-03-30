@@ -159,7 +159,10 @@ Phone: ${phone}
 Area: ${area}
 Quantity: ${quantity}
 Message: ${message}`;
-
+    
+    // Open WhatsApp after saving attempt
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
+    window.open(whatsappURL, "_blank");
     // Save to Google Sheet in background
     const formData = new FormData(form);
     formData.append("action","add");
@@ -175,11 +178,6 @@ Message: ${message}`;
     } catch (error) {
       console.error("Google Sheet save failed:", error);
     }
-
-    // Open WhatsApp after saving attempt
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
-    window.open(whatsappURL, "_blank");
-
     form.reset();
   });
 </script>
