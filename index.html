@@ -5,101 +5,223 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SB Bricks Manufacturers</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f3ef;
-      color: #333;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(to bottom, #f6f4f1, #ebe6df);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
     header {
-      background-color: skyblue;
-      color: black;
+      background: linear-gradient(135deg, #8b2e17, #c94f2d);
+      color: white;
       text-align: center;
-      padding: 20px;
+      padding: 35px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    form {
-      max-width: 500px;
-      margin: 40px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
-    input, textarea, select, button {
+    header p {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    /* Main Centered Container */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Info Box */
+    #info {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
+      max-width: 1000px;
+      margin: 0 auto 25px;
+      padding: 18px 20px;
+      background: white;
+      border-left: 6px solid #b53a1c;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      color: #444;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    /* Main Product Image */
+    .logo {
+      width: 100%;
+      max-width: 950px;
+      height: auto;
+      display: block;
+      margin: 0 auto 30px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border: 4px solid white;
+    }
+
+    /* Form */
+    form {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto 30px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(4px);
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border-top: 6px solid #b53a1c;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #8b2e17;
+      font-size: 1.7rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 8px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #b53a1c;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(181, 58, 28, 0.15);
+      background: white;
+    }
+
+    textarea {
+      resize: vertical;
     }
 
     button {
-      background-color: #b53a1c;
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
       color: white;
       border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(18, 140, 126, 0.25);
     }
 
     button:hover {
-      background-color: #8a2e16;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(18, 140, 126, 0.35);
     }
 
+    /* Visiting Card Image */
+    .resposive-img {
+      width: 100%;
+      max-width: 380px;
+      display: block;
+      margin: 0 auto;
+      background: white;
+      padding: 10px;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      border: 2px solid #f0f0f0;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 10px;
-      color: #555;
+      padding: 18px 10px;
+      margin-top: 25px;
+      background: #2d2d2d;
+      color: #ddd;
+      font-size: 0.95rem;
     }
-    /*.logo{
-      border:2px solid red;
-      max-width: 300px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-    }*/
-    .logo{
-    width: 100%;           /* fills the width of screen */
-    height: auto;          /* keeps the original aspect ratio */
-    max-width: 1152px;     /* limits image size on big screens */
-    display: block;        /* removes extra spacing below image */
-    margin: 0 auto;        /* centers it horizontally */
-    border-radius: 10px;   /* optional — soft corners */
-    object-fit: cover;     /* keeps it neat if container changes */
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .main-container {
+        padding: 20px 15px;
+      }
+
+      #info {
+        font-size: 0.95rem;
+        text-align: left;
+      }
+
+      form {
+        padding: 22px 18px;
+      }
+
+      .logo {
+        border-radius: 10px;
+      }
+
+      .resposive-img {
+        max-width: 90%;
+      }
     }
-    /*.responsive-img {
-    width: 100%;           
-    height: auto;          
-    max-width: 600px;     
-    display: block;        
-    margin: 0 auto;        
-    border-radius: 10px;
-    object-fit: cover;     
-    }*/
-    .resposive-img{
-      max-width: 300px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-    }
-    @media (max-width: 600px) {
-    .responsive-img {
-    border-radius: 5px;
-    max-width: 100%;
-    }
-    .logo{
-    border-radius:5px;
-    max-width:100%
-    }
-    }
-    #info{
-      margin: 0px 10px 0px 10px;
-      padding:10px;
-      border:1px solid black;
-      background-color:grey;
+
+    @media (max-width: 480px) {
+      header {
+        padding: 25px 15px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 0.9rem;
+      }
+
+      form h2 {
+        font-size: 1.4rem;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      #info {
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -107,47 +229,55 @@
 
   <header>
     <h1>SB Bricks Manufacturers</h1>
-    <p>High-quality red wood-fired bricks</p>
+    <p>Premium Quality Red Wood-Fired Bricks for Strong & Durable Construction</p>
   </header>
-  <div id="info">
-  <p>bricks made by soil and some materials. fired by wood.<br>visit benkankatti, post:nigadhi, haliyal-dandeli road, dharwad, 580118</p>
+
+  <div class="main-container">
+
+    <div id="info">
+      <p>
+        We manufacture high-quality red bricks using selected soil and traditional wood-fired methods for strength and durability.<br><br>
+        <strong>Visit Us:</strong> Benkankatti, Post: Nigadhi, Haliyal–Dandeli Road, Dharwad - 580118
+      </p>
+    </div>
+
+    <img src="SBbrick.jpg" alt="red brick" class="logo">
+
+    <form id="orderForm">
+      <h2>Place Your Order</h2>
+
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Enter Email:</label>
+      <input type="email" id="email" name="email" placeholder="Optional">
+
+      <label for="phone">Phone Number:</label>
+      <input type="number" id="phone" name="phone" required>
+
+      <label for="area">Delivery Area:</label>
+      <textarea id="area" rows="3" name="address" required></textarea>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required>
+
+      <label for="message">Additional Message:</label>
+      <textarea id="message" name="message" rows="3" placeholder="Optional"></textarea>
+
+      <button type="submit">Send Order on WhatsApp</button>
+    </form>
+
+    <img src="SBbrickcard.jpg" alt="visitingcard" class="resposive-img">
+
   </div>
-  <center>
-  <img src="SBbrick.jpg" alt="red brick" class="logo">
-  </center>
-  <form id="orderForm">
-    <h2>Place Your Order</h2>
 
-    <label for="name">Full Name:</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="email">Enter Email:</label>
-    <input type="email" id="email" name="email" placeholder="optional">
-
-    <label for="phone">Phone Number:</label>
-    <input type="number" id="phone" name="phone" required>
-
-    <label for="area">Delivery Area:</label>
-    <textarea id="area" rows="3" name="address" required></textarea>
-
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" required>
-
-    <label for="message">Additional Message:</label>
-    <textarea id="message" name="message" rows="3" placeholder="optional"></textarea>
-
-    <button type="submit">Send Order on WhatsApp</button>
-  </form>
-  <center>
-  <img src="SBbrickcard.jpg" alt="visitingcard" class="resposive-img">
-                                                   
-  </center>
   <footer>
-    <p>&copy; 2025 SB Bricks Manufacturers +916363788297,8310812864| All Rights Reserved</p>
+    <p>&copy; 2025 SB Bricks Manufacturers | +91 6363788297, +91 8310812864 | All Rights Reserved</p>
   </footer>
+
 <script>
   const form = document.getElementById("orderForm");
-  const scriptURL = "https://script.google.com/macros/s/AKfycbw5PMs-DIShd87hArHtTRr6-QAcL8U3Dqyz22zZn3hMGS8EVJyoNhfDu4nDIgcvoUMdTg/exec"; // Replace with your Apps Script URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw5PMs-DIShd87hArHtTRr6-QAcL8U3Dqyz22zZn3hMGS8EVJyoNhfDu4nDIgcvoUMdTg/exec";
 
   form.addEventListener("submit", async function(e) {
     e.preventDefault();
@@ -159,7 +289,7 @@
     const quantity = document.getElementById("quantity").value;
     const message = document.getElementById("message").value;
 
-    const whatsappNumber = "916363788297"; // Your WhatsApp number
+    const whatsappNumber = "916363788297";
 
     const whatsappMsg = `🧱 *New Brick Order* 🧱
 Name: ${name}
@@ -169,12 +299,12 @@ Area: ${area}
 Quantity: ${quantity}
 Message: ${message}`;
     
-    // Open WhatsApp after saving attempt
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
     window.open(whatsappURL, "_blank");
-    // Save to Google Sheet in background
+
     const formData = new FormData(form);
     formData.append("action","add");
+
     try {
       const response = await fetch(scriptURL, {
         method: "POST",
@@ -187,25 +317,12 @@ Message: ${message}`;
     } catch (error) {
       console.error("Google Sheet save failed:", error);
     }
+
     form.reset();
   });
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
